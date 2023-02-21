@@ -1,0 +1,20 @@
+version: "3"
+services:
+  frontend:
+    build: ./Frontend
+    ports:
+      - "80:80"
+  backend:
+    build: ./Backend
+    environment:
+      MONGO_URL: "mongodb://mongo:27017/sigenu"
+  mongo:
+    image: mongo:4.2
+    volumes:
+      - sigenu-mongo:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: sigenu
+volumes:
+  sigenu-mongo:
+    name: sigenu-mongo
+
