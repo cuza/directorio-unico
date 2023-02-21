@@ -93,7 +93,7 @@ jobs:
           COSIGN_EXPERIMENTAL: "true"
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
-        run: echo "${{ steps.meta-frontend.outputs.tags }}" | xargs -I {} cosign sign {}@${{ steps.build-and-push.outputs.digest }}
+        run: echo "${{ steps.meta-frontend.outputs.tags }}" | xargs -I {} cosign sign {}@${{ steps.build-and-push-frontend.outputs.digest }}
 
 ###################################### Backend ######################################
 
@@ -130,4 +130,4 @@ jobs:
           COSIGN_EXPERIMENTAL: "true"
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
-        run: echo "${{ steps.meta-backend.outputs.tags }}" | xargs -I {} cosign sign {}@${{ steps.build-and-push.outputs.digest }}
+        run: echo "${{ steps.meta-backend.outputs.tags }}" | xargs -I {} cosign sign {}@${{ steps.build-and-push-backend.outputs.digest }}
